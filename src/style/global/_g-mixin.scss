@@ -1,0 +1,18 @@
+@use 'g-variable' as *;
+@use 'sass:map';
+
+//- MediaQuery
+@mixin mq($media: pc) {
+  @media #{map.get($media-query, $media)} {
+    @content
+  }
+};
+
+//- Hover
+@mixin hover() {
+  @media (any-hover: hover) {
+    &:hover {
+      @content
+    }
+  }
+};
