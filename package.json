@@ -1,0 +1,41 @@
+{
+  "name": "portfolio2026",
+  "version": "1.0.0",
+  "description": "ポートフォリオサイトの作成用リポジトリ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suzu-private/portfolio2026.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suzu-private/portfolio2026/issues"
+  },
+  "homepage": "https://github.com/suzu-private/portfolio2026#readme",
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "babel-loader": "^10.1.1",
+    "css-loader": "^7.1.4",
+    "glob": "^13.0.6",
+    "html-webpack-plugin": "^5.6.7",
+    "mini-css-extract-plugin": "^2.10.2",
+    "pug": "^2.0.4",
+    "pug-loader": "^2.4.0",
+    "sass": "^1.100.0",
+    "sass-loader": "^17.0.0",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3",
+    "webpack-dev-server": "^5.2.4"
+  },
+  "dependencies": {
+    "destyle.css": "^4.0.1"
+  }
+}
