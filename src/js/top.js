@@ -18,7 +18,7 @@ if (wrapper) {
 
   function createAnimation() {
     // CSSプロパティとtransformをリセット
-    gsap.set([mv, mvInner, contentsInner], {
+    gsap.set([mv, mvInner, contents, contentsInner], {
       clearProps: "all"
     });
     
@@ -75,10 +75,10 @@ if (wrapper) {
 
       mvScroll = mvInner.scrollHeight - sticky.clientHeight;
 
-      // 一時的に幅を60%に変更して、正確な高さを測定
+      // 一時的に幅を100%に変更して、正確な高さを測定
       const originalWidth = getComputedStyle(document.documentElement).getPropertyValue('--contents-width');
       
-      document.documentElement.style.setProperty('--contents-width', '60%');
+      document.documentElement.style.setProperty('--contents-width', '100%');
       
       // 強制的にレイアウトを再計算させる
       contents.offsetHeight; // reflow trigger
