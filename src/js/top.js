@@ -1,86 +1,152 @@
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
-}
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-window.addEventListener('load', () => {
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: 'instant'
-  });
-});
+gsap.registerPlugin(ScrollTrigger);
 
-// ----------------------------
-// mvスクロール終了判定
-// ----------------------------
-const mvWrapper = document.querySelector('.js-top-mv');
-const mv = mvWrapper.querySelector('[data-top-mv="mv"]')
+const wrapper = document.querySelector(".js-top-mv");
 
-let canResize = false;
-let resizeStart = 0;
+if (wrapper) {
+  const mv = wrapper.querySelector("[data-top-mv='mv']");
+  const mvInner = wrapper.querySelector("[data-top-mv='mv-inner']");
+  const contents = wrapper.querySelector("[data-top-mv='contents']");
+  const contentsInner = wrapper.querySelector("[data-top-mv='contents-inner']");
 
-mv.addEventListener('scroll', () => {
-  const isScrollEnd =
-    mv.scrollTop + mv.clientHeight >= mv.scrollHeight - 2;
+  const sticky = document.querySelector(".js-top-sticky");
 
-  if (isScrollEnd && !canResize) {
-    canResize = true;
-    resizeStart = window.scrollY;
-    mv.style.overflow = "hidden";
-  }
+  let mvScroll;
+  let contentsScroll;
 
-  if (!isScrollEnd && canResize) {
-    canResize = false;
-  }
-});
-
-// ----------------------------
-// スクロールでmvの幅を変更
-// ----------------------------
-const maxWidth = 40;
-
-let ticking = false;
-
-const updateWidth = () => {
-  if (!canResize) {
+  function createAnimation() {
+    // CSSプロパティとtransformをリセット
+    gsap.set([mv, mvInner, contentsInner], {
+      clearProps: "all"
+    });
+    
+    // --contents-widthを初期状態に戻す
     document.documentElement.style.setProperty('--contents-width', '0%');
-    document.documentElement.style.setProperty('--mv-width', '100%');
-    ticking = false;
-    return;
+
+    const isSp = window.matchMedia('(width < 768px)').matches;
+
+    if (isSp) {
+      // ----------------------------
+      // SP版: 縦スクロール
+      // ----------------------------
+      
+      // スクロール量を計算
+      mvScroll = mvInner.scrollHeight - mv.clientHeight;
+      
+      // contentsの下辺がウィンドウ（ビューポート）の下辺に来るまでの距離
+      const mvTransition = contents.clientHeight + 40;
+      const totalScroll = mvScroll + mvTransition;
+
+      console.log('SP:', { mvScroll, mvTransition, totalScroll });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top top",
+          end: "+=" + totalScroll,
+          pin: true,
+          pinSpacing: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // ① mv固定しつつmvInnerをスクロール
+      tl.to(mvInner, {
+        y: -mvScroll,
+        ease: "none",
+        duration: mvScroll
+      });
+
+      // ② mvとcontentsを同時に上にスクロールさせる（contentsの下辺が画面下辺に来るまで）
+      tl.to([mv, contents], {
+        y: -mvTransition,
+        ease: "none",
+        duration: mvTransition
+      }, ">");
+
+    } else {
+      // ----------------------------
+      // PC版: 横スクロール（既存の挙動）
+      // ----------------------------
+
+      mvScroll = mvInner.scrollHeight - sticky.clientHeight;
+
+      // 一時的に幅を60%に変更して、正確な高さを測定
+      const originalWidth = getComputedStyle(document.documentElement).getPropertyValue('--contents-width');
+      
+      document.documentElement.style.setProperty('--contents-width', '60%');
+      
+      // 強制的にレイアウトを再計算させる
+      contents.offsetHeight; // reflow trigger
+      
+      // 幅が変わった後のcontentsScrollを正確に計算
+      contentsScroll = contentsInner.scrollHeight - contents.clientHeight;
+      
+      // 元に戻す
+      document.documentElement.style.setProperty('--contents-width', originalWidth);
+
+      const transitionDuration = 1000;
+      const totalScroll = mvScroll + transitionDuration + contentsScroll;
+
+      console.log('PC:', { mvScroll, contentsScroll, totalScroll });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top top",
+          end: "+=" + totalScroll,
+          pin: sticky,
+          pinSpacing: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+
+      // ① MV内スクロール
+      tl.to(mvInner, {
+        y: -mvScroll,
+        ease: "none",
+        duration: mvScroll
+      });
+
+      // ② 幅変更
+      tl.fromTo(":root", {
+        "--contents-width": "0%"
+      }, {
+        "--contents-width": "100%",
+        ease: "none",
+        duration: transitionDuration
+      });
+
+      // ③ 右側スクロール
+      tl.to(contentsInner, {
+        y: -contentsScroll,
+        ease: "none",
+        duration: contentsScroll
+      });
+    }
   }
 
-  const progress = Math.min(
-    (window.scrollY - resizeStart) / 500,
-    1
-  );
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    // デバウンス処理：リサイズが完了してから再計算
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // ScrollTriggerをすべて削除してリセット
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill(true));
+      
+      // DOMが安定するまで少し待機
+      requestAnimationFrame(() => {
+        createAnimation();
+      });
+    }, 250);
+  });
 
-  const width = progress * maxWidth;
-  const rootStyle = document.documentElement.style;
-
-  rootStyle.setProperty(
-    '--contents-width',
-    `${width}%`
-  );
-
-  rootStyle.setProperty(
-    '--mv-width',
-    `${100 - width}%`
-  );
-
-  if(width === 0) {
-    console.log("aaa")
-    mv.style.overflow = "scroll";
-  }else if (width === 40) {
-    mv.style.overflow = "hidden";
-    console.log('hidden')
-  } 
-
-  ticking = false;
-};
-
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(updateWidth);
-    ticking = true;
-  }
-});
+  // 初回実行
+  createAnimation();
+}

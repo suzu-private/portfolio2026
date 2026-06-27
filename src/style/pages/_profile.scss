@@ -6,6 +6,11 @@
   &__inner {
     margin: 20px auto;
     padding: 0 20px 96px;
+
+    @include mq(sp) {
+      margin-top: 0;
+      padding: 0;
+    }
   }
 
   &__mv {
@@ -32,11 +37,20 @@
     mix-blend-mode: luminosity;
     text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);  
     text-align: center;
+
+    @include mq(sp) {
+      font-size: vw(40);
+    }
   }
 
   &__content {
     margin-top: 40px;
     padding-inline: 20px;
+
+    @include mq(sp) {
+      margin-top: 0;
+      padding-inline: 10px;
+    }
   }
 
   &__title {
@@ -50,34 +64,64 @@
     border-bottom: 2px dotted var(--color-navy);
     text-wrap: nowrap;
 
+    @include mq(sp) {
+      font-size: vw(24, 32);
+    }
+
     span {
       font-size: 20px;
       opacity: 0.5;
       width: 100%;
       text-align: right;
       margin-right: 1em;
+
+      @include mq(sp) {
+        font-size: vw(16, 20);
+      }
     }
   }
 
   &__discription {
     padding: 16px 20px 32px;
+    @include mq(sp) {
+      padding: 8px 0 24px;
+      font-size: vw(14, 16);
+    }
 
     &--l-text {
       font-size: 20px;
+
+      @include mq(sp) {
+        font-size: vw(16, 20);
+      }
     }
 
     &--career {
       p {
         display: flex;
         gap: 8px;
+
+        @include mq(sp) {
+          flex-direction: column;
+          gap: 2px;
+        }
+
         & + p {
-          margin-top: 8px
+          margin-top: 8px;
         }
       }
 
       span {
         &:first-child {
           flex-shrink: 0;
+        }
+      }
+    }
+
+    &--certifications {
+      p + p {
+        @include mq(sp) {
+          margin-top: 8px;
         }
       }
     }
@@ -93,6 +137,10 @@
     font-size: 18px;
     font-weight: bold;
 
+    @include mq(sp) {
+      font-size: vw(16, 18);
+    }
+
     &:not(:first-child) {
       margin-top: 16px;
     }
@@ -100,6 +148,10 @@
 
   &__about-description {
     font-size: 15px;
+    @include mq(sp) {
+      font-size: vw(14, 15);
+    }
+
     p {
       margin-top: 4px;
       text-indent: calc(-1em - 10px);
@@ -126,6 +178,10 @@
     border-radius: 8px;
     text-align: center;
 
+    @include mq(sp) {
+      font-size: vw(14, 16);
+    }
+
     &:has(span) {
       margin-top: 22px;
       border-radius: 0 8px 8px 8px;
@@ -133,7 +189,7 @@
 
     span {
       position: absolute;
-      top: calc(-100% + 8px);
+      bottom: calc(100% + 2px);
       left: -2px;
       font-size: 12px;
       text-align: center;

@@ -13,6 +13,10 @@
 
     & > :last-child {
       margin-bottom: 96px;
+
+      @include mq(sp) {
+        margin-bottom: 20px;
+      }
     }
   }
 
@@ -27,12 +31,21 @@
     text-align: center;
     line-height: 1.0;
 
+    @include mq(sp) {
+      margin-top: 0;
+      font-size: vw(24, 32);
+    }
+
     span {
       font-size: 18px;
       display: block;
       position: relative;
       line-height: 1.5;
       letter-spacing: 0.2em;
+
+      @include mq(sp) {
+        font-size: vw(14, 18);
+      }
 
       &::before {
         content: "";
@@ -41,12 +54,20 @@
         background: var(--color-navy);
         margin: 8px auto;
         display: block;
+
+        @include mq(sp) {
+          margin: 4px auto;
+        }
       }
     }
   }
 
   h2:first-of-type {
     margin-top: 0;
+
+    @include mq(sp) {
+      margin-top: 16px;
+    }
   }
 
   &__swiper {
@@ -106,8 +127,12 @@
   }
 
   &__swiper {
-    width: 750px;
+    width: 600px;
     margin-bottom: 24px;
+
+    @include mq(sp) {
+      width: 100%;
+    }
 
     [class^="swiper-button"] {
       width: 40px;
@@ -118,6 +143,12 @@
       right: 10px;
       color: #fff;
       transition: opacity 0.3s ease;
+
+      @include mq(sp) {
+        width: 32px;
+        height: 32px;
+        padding: 8px;
+      }
 
       @include hover() {
         opacity: 0.5;
@@ -150,6 +181,11 @@
     font-size: 32px;
     color: #fff;
     position: absolute;
+    top: -50px;
     right: 0;
+
+    @include mq(sp) {
+      font-size: vw(24, 32);
+    }
   }
 }

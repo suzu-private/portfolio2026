@@ -1,7 +1,19 @@
 @use 'g-variable' as *;
 @use 'sass:map';
+@use 'sass:math';
 
 //- Convert toRem
 @function rem($px) {
   @return math.div($px, $base-font-size) * 1rem;
+}
+
+//- Convert px to vw (based on 375px viewport)
+@function vw($px, $max: null, $viewport: 375) {
+  $vw-value: math.div($px, $viewport) * 100vw;
+  
+  @if $max {
+    @return min($vw-value, #{$max}px);
+  } @else {
+    @return $vw-value;
+  }
 }

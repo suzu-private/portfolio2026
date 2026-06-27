@@ -7,6 +7,43 @@ block js
   script(src='./js/top.js' type='module')
 
 block body
+  -
+    const aboutPageItems = [
+      {
+        "title": "製作期間",
+        "description": "約 1 か月間",
+        "img": "calendar"
+      },
+      {
+        "title": "製作プロセス",
+        "description": "1. 情報整理<br>2. ワイヤーフレーム作成<br>3. 環境構築<br>4. コーディング<br>5. 動作確認・調整<br>6. 公開",
+        "img": "pc"
+      },
+      {
+        "title": "使用技術・ツール",
+        "description": "HTML5 (Pug) / CSS3 (SCSS)<br>JavaScript<br>VS Code<br>Git / GitHub<br>SourceTree<br>Figma",
+        "img": "pickel"
+      }
+    ]
+  -
+    const activitiesItem = [
+      {
+        "title": "社内活動",
+        "description": "新卒社員向けの研修において、若手代表として講師に選出いただきました。<br>全社のエンジニアを対象とした技術共有会にて、発表者としてナレッジの展開に貢献しました。<br>また、社内の「経営者育成プログラム」に参加し、エンジニア以外の分野でも積極的に学びを深めています。",
+        "img": "people"
+      },
+      {
+        "title": "勉強・学習",
+        "description": "業務では既存の開発環境を利用することが多いため、環境構築への理解を深める目的で、Vite や Webpack を自主的に学習しています。<br>また、Vue.js を学習し、アウトプットとして ToDo リストアプリを製作しました。<br>現在はマネジメント検定3級の取得に向けて、マネジメント全般の知識を体系的に学習しています。",
+        "img": "pen"
+      },
+      {
+        "title": "学生時代",
+        "description": "大学ではマーケティングを専攻し、学生研究大会や企業主催のPBLプログラムに参加しました。調査・分析だけでなく、資料作成やプレゼンテーションにも力を入れ、相手に伝わりやすい情報設計を意識する姿勢は、現在のWeb制作にも活かされています。",
+        "img": "student"
+      }
+    ]
+
   header.p-top-header
     .p-top-header__name 
       h1 Kashiwagi Suzu
@@ -17,34 +54,103 @@ block body
           li.nav-list__item 
             a(href=item.href)
               | #{ item.title }
-  main.p-top.js-top-mv
-    section.p-top-mv(data-top-mv="mv")
-      .p-top-mv__img
-      .p-top-mv__contents 
-        .p-top-mv__contents-head 
-          p Kashiwagi 
-          p Suzu
-        .p-top-mv__contents-greeting
-          p
-            | 初めまして
-            br
-            | 柏木すずです
-          p
-            | ポートフォリオサイトをご覧いただき
-            br
-            | ありがとうございます。
-          p
-            | このサイトでは、
-            br
-            | 制作実績だけでは伝わらない経験や取り組みも含めて、
-            br
-            | 私自身を知っていただけるようにまとめました。
-          p 少しでも興味を持っていただけましたら幸いです。
+  +side-content()
+  +nav-header-sp
 
-    section.p-top-contents.check-background(data-top-mv="contents")
-      .p-top-contents__inner 
-        .p-top-contents__item
-          h2.p-top-contents__title 
-            | Profile 
-          .p-top-contents__description 
-          
+  main.p-top.js-top-mv
+    .p-top__sticky.js-top-sticky
+      section.p-top-mv(data-top-mv="mv")
+        .p-top-mv__img
+        .p-top-mv__contents(data-top-mv="mv-inner")
+          .p-top-mv__contents-head 
+            p Kashiwagi 
+            p Suzu
+          .p-top-mv__contents-greeting
+            p
+              | 初めまして
+              br
+              | 柏木すずです
+            p
+              | ポートフォリオサイトをご覧いただき
+              br
+              | ありがとうございます。
+            p
+              | このサイトでは、
+              br
+              | 制作実績だけでは伝わらない経験や
+              br.sp-only
+              | 取り組みも含めて、
+              br
+              | 私自身を知っていただけるようにまとめました。
+            p 少しでも興味を持っていただけましたら幸いです。
+
+      section.p-top-contents.check-background(data-top-mv="contents")
+        .p-top-contents__inner(data-top-mv="contents-inner")
+          .p-top-contents__item
+            h2.p-top-contents__title 
+              | Profile 
+            .p-top-contents__description.p-top-contents__description--profile
+              p
+                | 1999年生まれ。東京都出身。
+                br
+                | 2022年に大学を卒業後、Web制作会社に入社。
+                br
+                | 現在はフロントエンドエンジニアとして、Webサイトの制作に携わっています。
+              p
+                | チームでの開発が中心のため、誰が見ても理解しやすく、保守しやすいコーディングを心がけています。
+            .p-top-contents__more
+              a(href='./profile.html') Read More
+          .p-top-contents__item
+            h2.p-top-contents__title 
+              | Works 
+            .p-top-contents__description.p-top-contents__description--works
+              .p-works__summary
+                ul.p-works__summary-list
+                  li.p-works__summary-item
+                    p.summary-title 参画案件
+                    p.summary-description 15
+                      span 件
+                  li.p-works__summary-item
+                    p.summary-title LP制作
+                    p.summary-description 5
+                      span 件
+                  li.p-works__summary-item
+                    p.summary-title 運用案件
+                    p.summary-description 7
+                      span 件
+                  li.p-works__summary-item
+                    p.summary-title 大規模案件
+                    p.summary-description 4
+                      span 件
+              .p-works__card-wrapper
+                - const workOptions = require('../data/work-card.json');
+                each option, index in workOptions
+                  if index <= 2
+                    +work-card(option, (index + 1))
+            .p-top-contents__more
+              a(href='./works.html') Read More
+          .p-top-contents__item
+            h2.p-top-contents__title 
+              | Activities 
+            .p-top-contents__description.p-top-contents__description--activities
+              ul.process-list
+                each item in activitiesItem
+                  li.process-list__item 
+                    img(src=`../assets/img/icon/${item.img}.svg`)
+                    p= item.title
+                    p!= item.description
+
+            .p-top-contents__more
+              a(href='./activities.html') Read More
+          .p-top-contents__item
+            h2.p-top-contents__title 
+              | About this page 
+            .p-top-contents__description.p-top-contents__description--about-page
+              ul.process-list
+                each item in aboutPageItems
+                  li.process-list__item 
+                    img(src=`../assets/img/icon/${item.img}.svg`)
+                    p= item.title
+                    p!= item.description
+            .p-top-contents__more
+              a(href='./about-page.html') Read More

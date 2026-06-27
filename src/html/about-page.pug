@@ -7,6 +7,7 @@ block js
 
 block body
   +side-content('About this page')
+  +nav-header-sp
 
   -
     const processItems = [
@@ -60,7 +61,7 @@ block body
         h2.p-about-page__title 本サイトについて
         p.p-about-page__message
           | このポートフォリオサイトは、これまでの学びや経験、取り組んできたことをまとめ、
-          br
+          br.pc-only
           | ご覧いただく方に分かりやすく伝えることを目的として制作しました。
 
         .p-about-page__content
@@ -77,7 +78,10 @@ block body
                   | ヶ月
               .schedule-item
                 !=calendarIcon
-                p.schedule-item__text 2026.06.01 ~ 2026.??.??
+                p.schedule-item__text
+                  | 2026.06.01 
+                  br.sp-only
+                  | ~ 2026.??.??
 
           .p-about-page__block
             h3
@@ -146,6 +150,7 @@ block body
                   li VS Code
                   li Git
                   li GitHub
+                  li SourceTree
                   li Figma
 
 

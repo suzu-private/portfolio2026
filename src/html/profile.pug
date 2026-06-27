@@ -7,6 +7,7 @@ block js
 
 block body
   +side-content('Profile')
+  +nav-header-sp
 
   main.check-background
     .p-profile
@@ -89,9 +90,15 @@ block body
 
             dt.p-profile__title Certifications
               span 資格
-            dd.p-profile__discription
-              p 2022年5月 HTML5プロフェッショナル認定試験 レベル1 合格
-              p 2024年3月 HTML5プロフェッショナル認定試験 レベル2 合格
+            dd.p-profile__discription.p-profile__discription--certifications
+              p
+                | 2022年5月　
+                br.sp-only
+                | HTML5プロフェッショナル認定試験 レベル1 合格
+              p
+                | 2024年3月　
+                br.sp-only
+                | HTML5プロフェッショナル認定試験 レベル2 合格
 
             dt.p-profile__title Skill
               span スキル

@@ -7,13 +7,14 @@ block js
 
 block body
   +side-content('Works')
+  +nav-header-sp
 
   main.check-background
     .p-works.js-sort-works
       .p-works__inner
         p.p-works__top-message
           | これまでに携わった案件をご紹介します
-          span ※期間が1か月程度の軽微な更新案件は省略しています。
+          span ※文言修正などの軽微な更新案件は掲載・件数ともに省略しています。
         .p-works__summary
           ul.p-works__summary-list
             li.p-works__summary-item
@@ -41,7 +42,28 @@ block body
             input(type="radio" name="works-sort" value="リニューアル")
           label.p-works__sort-label 運用
             input(type="radio" name="works-sort" value="運用")
+
         .p-works__card-wrapper
+          .p-works__icon-list
+            .p-works__icon-item
+              .
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar">
+                  <path d="M8 2v4"></path>
+                  <path d="M16 2v4"></path>
+                  <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                  <path d="M3 10h18"></path>
+                </svg>
+              span 担当期間
+            .p-works__icon-item
+              .
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-users">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              span フロントエンド アサイン人数
+          
           - const workOptions = require('../data/work-card.json');
           each option, index in workOptions
             +work-card(option, (index + 1))

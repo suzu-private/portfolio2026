@@ -9,17 +9,19 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
     gallery.querySelector('.js-activities-swiper'),
     {
       modules: [Autoplay],
-
-      slidesPerView: 3,
-
+      slidesPerView: 2.5,
       autoplay: {
         delay: 0,
         disableOnInteraction: false,
       },
-
       loop: true,
       speed: 5000,
       spaceBetween: 16,
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+        },
+      },
     }
   );
 
@@ -44,14 +46,11 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
     gallery.querySelector('.js-modal-swiper'),
     {
       modules: [Navigation, Thumbs],
-
       slidesPerView: 1,
-
       navigation: {
         nextEl: modal.querySelector('[data-modal-swiper="next-btn"]'),
         prevEl: modal.querySelector('[data-modal-swiper="prev-btn"]'),
       },
-
       thumbs: {
         swiper: modalSubSwiper,
       },

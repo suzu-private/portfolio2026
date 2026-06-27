@@ -1,5 +1,8 @@
 mixin side-content(text, options)
-  .c-side-content.check-background
+  .c-side-content.check-background.js-menu
+    .c-side-content__close.sp-only(data-js-menu="close-btn")
+      button.c-side-content__close-btn(type="button")
+        span close
     .c-side-content__top
       .c-side-nav
         ul.c-side-nav__link-wrap
@@ -16,3 +19,12 @@ mixin side-content(text, options)
             img(src="../assets/img/icon/mail.svg")
             span suzu_official@outlook.jp
     p.c-side-text #{ text }
+
+mixin nav-header-sp
+  .c-nav-content.sp-only
+    .c-nav-content__inner
+      .c-nav-content__name
+        h1 Kashiwagi Suzu
+      .c-nav-content__open(data-js-menu="open-btn")
+        button.c-nav-content__open-btn(type="button")
+          span Menu

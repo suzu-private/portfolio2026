@@ -11,6 +11,10 @@
     font-weight: bold;
     line-height: 1.1;
 
+    @include mq(sp) {
+      font-size: vw(24, 32);
+    }
+
     &::before {
       content: "";
       display: block;
@@ -24,6 +28,10 @@
   &__message {
     font-size: 14px;
     margin: 20px 0;
+
+    @include mq(sp) {
+      margin: 0;
+    }
   }
 
   &__block {
@@ -37,6 +45,10 @@
       font-size: 20px;
       font-weight: bold;
       letter-spacing: 0.15em;
+
+      @include mq(sp) {
+        font-size: vw(16, 20);
+      }
 
       &::after {
         content: "";
@@ -53,6 +65,12 @@
         padding: 8px;
         background: rgba(255,206,227,0.6);
         border-radius: 50%;
+
+        @include mq(sp) {
+          width: 30px;
+          height: 30px;
+          padding: 6px;
+        }
       }
     }
   }
@@ -67,6 +85,10 @@
       background: #ffecf3;
       border-radius: 8px;
 
+      @include mq(sp) {
+        padding: 8px 16px;
+      }
+
       .schedule-item {
         display: flex;
         align-items: center;
@@ -80,12 +102,28 @@
           font-size: 18px;
           font-weight: bold;
           border-right: 2px dashed var(--color-sakura-pink);
+          @include mq(sp) {
+            font-size: vw(14, 18);
+          }
 
           svg {
             width: 40px;
             height: 40px;
             margin-right: 16px;
             color: var(--color-pink);
+
+            @include mq(sp) {
+              width: 28px;
+              height: 28px;
+              margin-right: 0;
+            }
+          }
+        }
+
+        svg {
+          @include mq(sp) {
+            width: 18px;
+            height: 18px;
           }
         }
 
@@ -93,8 +131,17 @@
           display: flex;
           align-items: baseline;
           gap: 8px;
+
+          @include mq(sp) {
+            line-height: 1.3;
+          }
+
           span {
             font-size: 32px;
+
+            @include mq(sp) {
+              font-size: vw(24, 32);
+            }
           }
         }
       }
@@ -107,6 +154,11 @@
     &--spec {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      
+      @include mq(sp) {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
     }
   }
 }
@@ -116,6 +168,11 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   align-items: stretch;
   gap: 32px 16px;
+
+  @include mq(sp) {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 
   &__item {
     position: relative;
@@ -127,6 +184,11 @@
     flex-direction: column;
     gap: 8px;
     align-items: center;
+
+    @include mq(sp) {
+      padding: 24px 16px 16px;
+      gap: 4px;
+    }
 
     span:first-child {
       display: block;
@@ -143,6 +205,13 @@
       color: #fff;
       border-radius: 50%;
       background: var(--color-pink);
+
+      @include mq(sp) {
+        width: 28px;
+        height: 28px;
+        font-size: 16px;
+        line-height: 28px;
+      }
     }
 
     p {
@@ -157,6 +226,10 @@
 
     img {
       width: 40px;
+
+      @include mq(sp) {
+        width: 32px;
+      }
     }
   }
 }
@@ -164,8 +237,16 @@
 .spec-item {
   padding-inline: 32px;
 
+  @include mq(sp) {
+    padding-inline: 16px;
+  }
+
   &:first-child {
     border-right: 2px dashed var(--color-sakura-pink);
+
+    @include mq(sp) {
+      border-right: none;
+    }
   }
 
   &__title {
@@ -180,6 +261,10 @@
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+
+    @include mq(sp) {
+      margin-top: 8px;
+    }
 
     li {
       min-width: 70px;
