@@ -3,6 +3,48 @@ extends ./base/layout
 block titleVariable
   - const pageTitle = "Portfolio"
 
+block js
+  script(src='./js/top.js' type='module')
+
 block body
-  main
-    h1 ああああ
+  header.p-top-header
+    .p-top-header__name 
+      h1 Kashiwagi Suzu
+    nav.p-top-header__nav
+      ul.nav-list
+        - const menuItems = require('../data/top-menu.json');
+        each item in menuItems
+          li.nav-list__item 
+            a(href=item.href)
+              | #{ item.title }
+  main.p-top.js-top-mv
+    section.p-top-mv(data-top-mv="mv")
+      .p-top-mv__img
+      .p-top-mv__contents 
+        .p-top-mv__contents-head 
+          p Kashiwagi 
+          p Suzu
+        .p-top-mv__contents-greeting
+          p
+            | 初めまして
+            br
+            | 柏木すずです
+          p
+            | ポートフォリオサイトをご覧いただき
+            br
+            | ありがとうございます。
+          p
+            | このサイトでは、
+            br
+            | 制作実績だけでは伝わらない経験や取り組みも含めて、
+            br
+            | 私自身を知っていただけるようにまとめました。
+          p 少しでも興味を持っていただけましたら幸いです。
+
+    section.p-top-contents.check-background(data-top-mv="contents")
+      .p-top-contents__inner 
+        .p-top-contents__item
+          h2.p-top-contents__title 
+            | Profile 
+          .p-top-contents__description 
+          

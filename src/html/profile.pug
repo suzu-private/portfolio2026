@@ -1,0 +1,120 @@
+extends ./base/layout
+
+block titleVariable
+  - const pageTitle = "Profile"
+
+block js
+
+block body
+  +side-content('Profile')
+
+  main.check-background
+    .p-profile
+      .p-profile__inner
+        .p-profile__mv
+          svg.p-profile__photo(viewBox="0 0 750 547.5")
+            defs
+              clipPath#profile-mask(clipPathUnits="userSpaceOnUse")
+                //- path(d="M 0,375 A 375,375 0 0,1 750,375 L 750,547.5 Q 735,532.5 720,547.5 Q 705,532.5 690,547.5 Q 675,532.5 660,547.5 Q 645,532.5 630,547.5 Q 615,532.5 600,547.5 Q 585,532.5 570,547.5 Q 555,532.5 540,547.5 Q 525,532.5 510,547.5 Q 495,532.5 480,547.5 Q 465,532.5 450,547.5 Q 435,532.5 420,547.5 Q 405,532.5 390,547.5 Q 375,532.5 360,547.5 Q 345,532.5 330,547.5 Q 315,532.5 300,547.5 Q 285,532.5 270,547.5 Q 255,532.5 240,547.5 Q 225,532.5 210,547.5 Q 195,532.5 180,547.5 Q 165,532.5 150,547.5 Q 135,532.5 120,547.5 Q 105,532.5 90,547.5 Q 75,532.5 60,547.5 Q 45,532.5 30,547.5 Q 15,532.5 0,547.5 L 0,375 Z")
+                path(d="M 20,0 H 730 Q 750,0 750,20 L 750,547.5 Q 735,532.5 720,547.5 Q 705,532.5 690,547.5 Q 675,532.5 660,547.5 Q 645,532.5 630,547.5 Q 615,532.5 600,547.5 Q 585,532.5 570,547.5 Q 555,532.5 540,547.5 Q 525,532.5 510,547.5 Q 495,532.5 480,547.5 Q 465,532.5 450,547.5 Q 435,532.5 420,547.5 Q 405,532.5 390,547.5 Q 375,532.5 360,547.5 Q 345,532.5 330,547.5 Q 315,532.5 300,547.5 Q 285,532.5 270,547.5 Q 255,532.5 240,547.5 Q 225,532.5 210,547.5 Q 195,532.5 180,547.5 Q 165,532.5 150,547.5 Q 135,532.5 120,547.5 Q 105,532.5 90,547.5 Q 75,532.5 60,547.5 Q 45,532.5 30,547.5 Q 15,532.5 0,547.5 L 0,20 Q 0,0 20,0 Z")
+            image(href="./assets/img/profile.jpg" width="750px" height="547.5" alt="プロフィール写真" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-mask)")
+
+          .p-profile__name
+            p Kashiwagi
+            p Suzu
+
+        .p-profile__content
+          dl
+            dt.p-profile__title Name
+              span 名前
+            dd.p-profile__discription.p-profile__discription--l-text 柏木 すず（カシワギ スズ）
+      
+            dt.p-profile__title Role
+              span 職種
+            dd.p-profile__discription.p-profile__discription--l-text フロントエンドエンジニア
+
+            dt.p-profile__title About Me
+              span 私のこと
+            dd.p-profile__discription
+              dl
+                dt.p-profile__about-title エンジニアとして
+                dd.p-profile__about-description
+                  | フロントエンドエンジニアとして5年目。LP制作から100ページを超える大規模サイトリニューアル、運用案件まで幅広いプロジェクトに携わってきました。
+                  br
+                  | 実装だけでなく、コードレビューや他社担当者とのコミュニケーションを含めた開発・運用業務も経験しています。
+                  br
+                  | チームでの開発が中心で、社内のバックエンドエンジニアや他社開発メンバーと連携しながら案件を進めることもあります。そのため、誰が見ても理解しやすく、保守しやすいコードを書くことを心がけています。
+                dt.p-profile__about-title プライベート
+                dd.p-profile__about-description
+                  p 
+                    span 💅
+                    | セルフネイルをすることが好きです（歴4年✨）
+                  p
+                    span 🎮
+                    | ゲームが好きです
+                    br
+                    | （今は「あつまれ どうぶつの森」に激ハマりしています！！）
+                  p
+                    span 🎤
+                    | カラオケが好きです
+                    br
+                    | （昭和歌謡曲をよく歌います♪ 山口百恵、中森明菜...etc）
+                  p
+                    span 🛍️
+                    | ネットショッピングが好きです
+                    br
+                    | （SNSとECサイトを行ったり来たりの休日です。。。）
+
+            dt.p-profile__title Career
+              span 経歴
+            dd.p-profile__discription.p-profile__discription--career
+              p 
+                span 1999年12月
+                span 母の実家がある大阪府堺市で誕生。<br>東京都八王子市で育つ。
+              p 
+                span 2015年4月
+                span 東京都立八王子東高等学校 入学
+              p 
+                span 2018年3月
+                span 東京都立八王子東高等学校 卒業
+              p
+                span 2018年4月
+                span 東洋大学経営学部マーケティング学科 入学
+              p
+                span 2022年3月
+                span 東洋大学経営学部マーケティング学科 卒業
+              p
+                span 2022年4月
+                span 株式会社フォークにフロントエンドエンジニアとして入社
+
+            dt.p-profile__title Certifications
+              span 資格
+            dd.p-profile__discription
+              p 2022年5月 HTML5プロフェッショナル認定試験 レベル1 合格
+              p 2024年3月 HTML5プロフェッショナル認定試験 レベル2 合格
+
+            dt.p-profile__title Skill
+              span スキル
+            dd.p-profile__discription.p-profile__discription--skill
+              dl
+                dt.p-profile__skill-title Languages
+                dd.p-profile__skill-item HTML5 (Pug)
+                  span 4years
+                dd.p-profile__skill-item CSS3 (SCSS)
+                  span 4years
+                dd.p-profile__skill-item JavaScript (jQuery)
+                  span 3years
+
+                dt.p-profile__skill-title Tools
+                dd.p-profile__skill-item Git 
+                dd.p-profile__skill-item GitHub 
+                dd.p-profile__skill-item SourceTree
+                dd.p-profile__skill-item Figma 
+                dd.p-profile__skill-item Photoshop
+                dd.p-profile__skill-item LambdaTest
+
+                dt.p-profile__skill-title Other
+                dd.p-profile__skill-item Vue.js (個人製作：To Do アプリ) 
+                dd.p-profile__skill-item API連携実装
+                dd.p-profile__skill-item HTMLメール
+                dd.p-profile__skill-item HTMLからPDF制作

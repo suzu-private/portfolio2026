@@ -1,9 +1,168 @@
 @use '../global' as *;
 
-body {
-  margin: 0;
+:root {
+  --mv-width:100%;
+  --contents-width: 0%;
 }
 
-h1 {
-  color: var(--color-pink);
+.p-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 16px;
+  width: calc(100% - 40px);
+  height: calc(100px - 32px);
+  padding-inline: 40px;
+  margin: 0 20px;
+  background: var(--color-navy);
+  border-radius: 9999px;
+  z-index: 100;
+
+  &__name {
+    font-size: 24px;
+    font-family: var(--fugas-font);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: var(--color-sakura-pink);
+    text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .nav-list {
+    display: flex;
+    gap: 16px;
+
+    &__item {
+      position: relative;
+      color: #fff;
+      line-height: 1.0;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -8px;
+        width: 100%;
+        height: 2px;
+        background: var(--color-sakura-pink);
+        transform: scale(0);
+        transition: transform 0.2s ease;
+      }
+
+      @include hover() {
+        color: var(--color-sakura-pink);
+
+        &::after {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}
+
+.p-top {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  height: 200dvh;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.p-top-mv {
+  $this: &;
+
+  position: sticky;
+  top: 100px;
+  margin: 100px auto auto;
+  width: var(--mv-width);
+  height: auto;
+  padding: 0;
+  border-radius: 50px;
+  overflow-x: hidden !important;
+
+  &::-webkit-scrollbar  {
+    width: 0;
+  }
+
+  &__img {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 85dvh;
+    background: url("../assets/img/profile.jpg") center / cover fixed;
+    filter: grayscale(0.7);
+    border-radius: 50px;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle, rgba(255, 0, 0, 0.774) 1px, transparent 1px), /* 赤 */
+        radial-gradient(circle, rgba(0, 72, 117, 0.674) 1px, transparent 1px), /* 青 */
+        radial-gradient(circle, rgb(0, 255, 119) 1px, transparent 1px); /* 緑 */
+      background-size: 3px 3px;
+      background-position: 
+          0 0,
+          1px 1px,
+          2px 4px;
+      opacity: 0.3;
+      pointer-events: none;
+      z-index: 1;
+    }
+  }
+
+  &__contents {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 750px;
+  }
+
+  &__contents-head {
+    margin-top: 50%;
+    font-size: 100px;
+    font-family: var(--fugas-font);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: var(--color-sakura-pink);
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);  
+    text-align: center;
+  }
+
+  &__contents-greeting {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    margin-block: 65%;
+
+    p {
+      margin-top: 16px;
+    }
+  }
+}
+
+.p-top-contents {
+  position: sticky;
+  top: 100px;
+  width: var(--contents-width);
+  height: 200dvh;
+  height: 85dvh;  
+  padding-right: 0;
+  border-radius: 50px;
+
+  &__inner {
+    padding: 40px 20px;
+  }
 }

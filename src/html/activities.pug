@@ -1,0 +1,60 @@
+extends ./base/layout
+
+block titleVariable
+  - const pageTitle = "Activities"
+
+block js
+
+block body
+  +side-content('Activities')
+
+  main.check-background
+    .p-activities
+      .p-activities__inner
+        - const categories = require('../data/activity-item.json');
+
+        each activities, categoryName in categories
+          h2.p-activities__category-title= categoryName
+            span= activities.subtitle
+
+          each activity in activities.items
+            +activity-item(activity)
+
+            if activity.slider
+              -
+                let slideCount = 0
+
+                if (activity.slider === 'marketing')
+                  slideCount = 16
+                else if (activity.slider === 'pbl')
+                  slideCount = 12
+
+              .js-activities-gallery
+                .swiper.p-activities__swiper.js-activities-swiper
+                  .swiper-wrapper
+                    - for (var i = 1; i <= slideCount; i++)
+                      .swiper-slide(data-slide-index=i-1)
+                        img(src=`../assets/img/powerpoint/${activity.slider}_${i}.png`)
+                p.p-activities__note ※制作を担当した発表資料を一部抜粋
+
+                //- モーダル
+                .c-modal.js-modal
+                  .c-modal__overlay
+                  .c-modal__content
+                    button.c-modal__close(type="button") ×
+
+                    .swiper.c-modal__swiper.js-modal-swiper
+                      .swiper-wrapper
+                        - for (var i = 1; i <= slideCount; i++)
+                          .swiper-slide(data-slide-index=i-1)
+                            img(src=`../assets/img/powerpoint/${activity.slider}_${i}.png`)
+
+                      .swiper-button-prev(data-modal-swiper="prev-btn")
+                      .swiper-button-next(data-modal-swiper="next-btn")
+                      .swiper-pagination
+
+                    .swiper.c-modal__sub-swiper.js-modal-sub-swiper
+                      .swiper-wrapper
+                        - for (var i = 1; i <= slideCount; i++)
+                          .swiper-slide(data-slide-index=i-1)
+                            img(src=`../assets/img/powerpoint/${activity.slider}_${i}.png`)

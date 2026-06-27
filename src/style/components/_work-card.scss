@@ -1,0 +1,118 @@
+@use '../global' as *;
+
+.c-work-card {
+  background: #fff;
+  box-shadow: rgba(2, 26, 84, 0.3) 6px 6px 0px;
+  border-radius: 16px;
+  overflow: hidden;
+  counter-increment: card-number;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--color-navy);
+    padding: 16px 24px;
+  }
+
+  &__header-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    font-weight: bold;
+
+    span {
+      display: inline-block;
+      font-family: var(--robot-font);
+      background: var(--color-pink);
+      font-size: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 32px;
+    }
+  }
+
+  &__header-detail {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--color-sakura-pink);
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+
+  &__content {
+    padding: 20px 24px;
+  }
+
+  &__content-tab {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+
+    .detail-tab {
+      background: var(--color-sakura-pink);
+      color: var(--color-navy);
+      font-size: 12px;
+      padding: 2px 12px;
+      border-radius: 9999px;
+    }
+  }
+
+  &__content-main {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+.content-item {
+  &__title {
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid var(--color-sakura-pink);
+  }
+
+  &__description {
+    font-size: 14px;
+    overflow-wrap: anywhere;
+
+    &:has(.skill-tab) {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .skill-tab {
+      background: var(--color-sakura-pink);
+      border-radius: 8px;
+      color: var(--color-navy);
+      padding: 4px 12px;
+    }
+
+    .roll-item {
+      position: relative;
+      padding-left: 20px;
+
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: calc(tan(60deg) * 8px / 2);
+        background-color: var(--color-pink);
+        clip-path: polygon(0 0, 100% 50%, 0 100%);
+        position: absolute;
+        top: 6px;
+        left: 0;
+      }
+    }
+  }
+}

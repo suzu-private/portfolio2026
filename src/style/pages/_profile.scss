@@ -1,0 +1,147 @@
+@use '../global' as *;
+
+.p-profile {
+  $this: &;
+
+  &__inner {
+    margin: 20px auto;
+    padding: 0 20px 96px;
+  }
+
+  &__mv {
+    position: relative;
+  }
+
+  &__photo {
+    image {
+      width: 100%;
+    }
+  }
+
+  &__name {
+    position: absolute;
+    top: calc(50% + 10px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 80px;
+    font-family: var(--fugas-font);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: var(--color-sakura-pink);
+    mix-blend-mode: luminosity;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);  
+    text-align: center;
+  }
+
+  &__content {
+    margin-top: 40px;
+    padding-inline: 20px;
+  }
+
+  &__title {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    font-size: 32px;
+    line-height: 1.0;
+    color: var(--color-navy);
+    font-family: var(--baloo-font);
+    border-bottom: 2px dotted var(--color-navy);
+    text-wrap: nowrap;
+
+    span {
+      font-size: 20px;
+      opacity: 0.5;
+      width: 100%;
+      text-align: right;
+      margin-right: 1em;
+    }
+  }
+
+  &__discription {
+    padding: 16px 20px 32px;
+
+    &--l-text {
+      font-size: 20px;
+    }
+
+    &--career {
+      p {
+        display: flex;
+        gap: 8px;
+        & + p {
+          margin-top: 8px
+        }
+      }
+
+      span {
+        &:first-child {
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    &--skill dl{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+
+  &__about-title {
+    font-size: 18px;
+    font-weight: bold;
+
+    &:not(:first-child) {
+      margin-top: 16px;
+    }
+  }
+
+  &__about-description {
+    font-size: 15px;
+    p {
+      margin-top: 4px;
+      text-indent: calc(-1em - 10px);
+      padding-left: calc(1em + 10px);
+    }
+    span {
+      margin-right: 4px;
+    }
+  }
+
+  &__skill-title {
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+  }
+
+  &__skill-item {
+    position: relative;
+    min-width: 70px;
+    width: fit-content;
+    padding: 4px 12px;
+    background: var(--color-white);
+    border: 2px solid rgba(44, 44, 44, 0.2);
+    border-radius: 8px;
+    text-align: center;
+
+    &:has(span) {
+      margin-top: 22px;
+      border-radius: 0 8px 8px 8px;
+    }
+
+    span {
+      position: absolute;
+      top: calc(-100% + 8px);
+      left: -2px;
+      font-size: 12px;
+      text-align: center;
+      background-color: rgba(44, 44, 44, 0.2);
+      padding: 2px 8px;
+      border-radius: 8px 8px 0 0;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+  }
+}

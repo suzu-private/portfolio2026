@@ -37,6 +37,7 @@
     "webpack-dev-server": "^5.2.4"
   },
   "dependencies": {
-    "destyle.css": "^4.0.1"
+    "destyle.css": "^4.0.1",
+    "swiper": "^12.2.0"
   }
 }

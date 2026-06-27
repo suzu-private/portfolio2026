@@ -1,0 +1,62 @@
+@use '../global' as *;
+
+.c-menu-card {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  aspect-ratio: 1 / 1.4;
+  background: var(--color-white);
+  box-shadow: 6px 6px 0 rgba(255, 133, 187, 0.8);
+  transform: translate(0, -50%)
+    translateX(calc(var(--i) * (220px + 24px)))
+    translateY(calc(var(--i) * -2px));
+  transition: transform 1.5s ease;
+  padding-block: 8px;
+
+  &__title {
+    font-size: 32px;
+    font-weight: bold;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    margin: 0 auto;
+    padding-right: 20px;
+    text-align: center;
+
+    span {
+      display: block;
+      font-weight: normal;
+      font-size: 16px;
+      text-indent: 3em;
+      margin-right: 0.5em;
+    }
+  }
+
+  &__icon {
+    width: 28px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: var(--color-pink);
+
+    &--bottom {
+      top: auto;
+      right: auto;
+      bottom: 10px;
+      left: 10px;
+      transform: rotate(180deg);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.c-menu-card:nth-child(1) { --i: 0; }
+.c-menu-card:nth-child(2) { --i: 1; }
+.c-menu-card:nth-child(3) { --i: 2; }
+.c-menu-card:nth-child(4) { --i: 3; }
+.c-menu-card:nth-child(5) { --i: 4; }
