@@ -67,6 +67,10 @@
     gap: 32px;
     color: var(--color-navy);
 
+    @include mq(sp) {
+      gap: 16px;
+    }
+
     & + .c-work-card {
       margin-top: 8px;
     }
@@ -81,20 +85,22 @@
 
   &__sort {
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: 10px 16px;
 
     @include mq(sp) {
       gap: 8px;
-      flex-wrap: wrap;
     }
   }
 
   &__sort-label {
+    width: fit-content;
     padding: 8px 20px;
     background: #fff;
     border-radius: 9999px;
     box-shadow: rgba(2, 26, 84, 0.3) 2px 2px 0px;
     color: var(--color-navy);
+    text-align: center;
     cursor: pointer;
 
     @include mq(sp) {
@@ -112,6 +118,10 @@
     @include hover() {
       margin-top: -2px;
       box-shadow: rgba(2, 26, 84, 0.3) 4px 4px 0px;
+    }
+
+    input {
+      display: none;
     }
   }
 }

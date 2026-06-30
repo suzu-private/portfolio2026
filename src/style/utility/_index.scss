@@ -13,3 +13,11 @@
     display: block;
   }
 }
+
+.u-text-marker {
+  position: relative;
+  font-weight: bold;
+  background: linear-gradient(transparent 60%, var(--color-sakura-pink) 60%);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}

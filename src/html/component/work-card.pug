@@ -36,7 +36,7 @@ mixin work-card(option, index)
     .c-work-card__content
       .c-work-card__content-tab
         each tab in tabs
-          .detail-tab(data-sort-works="tab")= tab
+          .detail-tab(data-sort-works="tab") ##{tab}
       .c-work-card__content-main 
         .content-item
           .content-item__title 概要

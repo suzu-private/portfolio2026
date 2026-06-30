@@ -11,7 +11,6 @@ function toggleMenu() {
 
   // メニューを開く
   openBtn.addEventListener('click', () => {
-    console.log("click")
     menu.classList.add('is-open');
     html.style.overflow = 'hidden';
   });

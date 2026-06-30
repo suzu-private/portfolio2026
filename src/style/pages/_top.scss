@@ -73,7 +73,6 @@
 
   &__sticky {
     display: flex;
-    gap: 16px;
     position: relative;
     padding-top: 100px !important;
     padding-right: 0 !important;
@@ -82,6 +81,8 @@
     @include mq(sp) {
       display: block;
       height: 100dvh;
+      padding-top: 0 !important;
+      overflow: inherit;
     }
   }
 }
@@ -98,6 +99,7 @@
 
   @include mq(sp) {
     width: 100%;
+    overflow: inherit;
   }
 
   &::-webkit-scrollbar  {
@@ -113,7 +115,11 @@
     overflow: hidden;
 
     @include mq(sp) {
-      height: 80dvh;
+      height: calc(100dvh - 60px);
+      position: sticky;
+      top: 60px;
+      left: 0;
+      background-attachment: scroll;
     }
 
     &::before {
@@ -144,9 +150,13 @@
     left: 50%;
     transform: translateX(-50%);
     max-width: 750px;
+    will-change: transform;
 
     @include mq(sp) {
       width: 100%;
+      position: relative;
+      margin-top: -50dvh;
+      padding-bottom: 50px;
     }
   }
 
@@ -186,7 +196,7 @@
 }
 
 .p-top-contents {
-  width: calc(var(--contents-width) - 16px);
+  width: var(--contents-width);
   flex-shrink: 0;
   padding-right: 0;
   border-radius: 50px;
@@ -195,13 +205,11 @@
   @include mq(sp) {
     width: 100%;
     padding-right: 0;
-    position: absolute;
-    top: 100dvh;
-    left: 0;
   }
 
   &__inner {
     padding: 80px 20px 80px;
+    will-change: transform;
 
     @include mq(sp) {
       padding: 40px 20px 40px;

@@ -16,11 +16,14 @@ const sortWorks = () => {
       const tags = []
       const tagElements = card.querySelectorAll('[data-sort-works="tab"]')
       tagElements.forEach((element) => {
-        tags.push(element.textContent)
+        tags.push(element.textContent.slice(1))
       })
 
-      if (selectedValue === "全て") {
-        card.hidden = false
+      const sortTags = ['全て', '新規製作', 'リニューアル', '運用']
+      if (selectedValue === '全て') {
+       card.hidden = false
+      } else if (selectedValue === 'その他') {
+        card.hidden = tags.some(tag => sortTags.includes(tag))
       } else if (tags.includes(selectedValue)) {
         card.hidden = false
       } else {
