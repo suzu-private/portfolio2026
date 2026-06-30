@@ -7,6 +7,7 @@ const wrapper = document.querySelector(".js-top-mv");
 
 if (wrapper) {
   const mv = wrapper.querySelector("[data-top-mv='mv']");
+  const mvOverlay = wrapper.querySelector("[data-top-mv='overlay']")
   const mvInner = wrapper.querySelector("[data-top-mv='mv-inner']");
   const contents = wrapper.querySelector("[data-top-mv='contents']");
   const contentsInner = wrapper.querySelector("[data-top-mv='contents-inner']");
@@ -32,8 +33,19 @@ if (wrapper) {
 
     const isSp = window.matchMedia("(width < 768px)").matches;
 
-    // SPはGSAPを使わない
+    // SPはオーバーレイ変更のみ
     if (isSp) {
+      gsap.to(mvOverlay, {
+        opacity: 0.45,
+        ease: "none",
+        scrollTrigger: {
+          trigger: wrapper,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
       return;
     }
 
@@ -81,6 +93,17 @@ if (wrapper) {
       ease: "none",
       duration: mvScroll,
     });
+
+    // オーバーレイ濃度変更
+    tl.to(
+      mvOverlay,
+      {
+        opacity: 0.45,
+        ease: "none",
+        duration: mvScroll,
+      },
+      0
+    );
 
     // 幅変更
     tl.fromTo(
