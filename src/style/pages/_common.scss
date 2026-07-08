@@ -1,0 +1,74 @@
+@use '../global' as *;
+
+html {
+  font-family: var(--base-font);
+  font-size: 16px;
+  line-height: 1.5;
+
+  @include mq(sp) {
+    font-size: vw(14, 16);
+  }
+}
+
+body {
+  background: var(--color-sakura-pink);
+  color: var(--color-black);
+}
+
+main {
+  width: calc(100vw - 250px - 55px);
+  height: calc(100dvh - 40px);
+  border-radius:16px;
+  padding: 40px 20px 20px 40px;
+  margin-top: 20px;
+  margin-left: 20px;
+
+  @include mq(sp) {
+    width: 90%;
+    height: auto;
+    padding: 16px;
+    margin: 90px auto 24px;
+  }
+
+  & > * {
+    width: 100%;
+    height: 100%;
+    padding-right: 20px;
+    overflow-y: scroll;
+
+    @include mq(sp) {
+      padding-right: 0;
+      overflow-y: visible;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border: 3px solid transparent;
+      background-clip: content-box;
+      background: rgba(255, 133, 187, 0.8);
+      border-radius: 999px;
+    }
+  }
+
+  [class$="__inner"] {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 750px;
+    margin-inline: auto;
+  }
+}
+
+.check-background {
+  background-color: #ffffff;
+  background-image: linear-gradient(90deg, #f2f2f280 15px, transparent 15px), linear-gradient(#f2f2f280 15px, transparent 15px);
+  background-position: 10px 10px;
+  background-size: 35px 35px;
+}

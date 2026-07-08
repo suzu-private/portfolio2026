@@ -1,0 +1,26 @@
+[
+  {
+    "title": "プロフィール",
+    "titleEn": "Profile",
+    "subTitle": "経歴・スキルなど",
+    "href": "profile.html"
+  },
+  {
+    "title": "実績",
+    "titleEn": "Works",
+    "subTitle": "実績・案件一覧",
+    "href": "works.html"
+  },
+  {
+    "title": "その他の活動",
+    "titleEn": "Activities",
+    "subTitle": "研修・共有会など",
+    "href": "activities.html"
+  },
+  {
+    "title": "本サイトについて",
+    "titleEn": "About this page",
+    "subTitle": "制作プロセス・使用技術など",
+    "href": "about-page.html"
+  }
+]

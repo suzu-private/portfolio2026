@@ -1,0 +1,157 @@
+extends ./base/layout
+
+block titleVariable
+  - const pageTitle = "About this page"
+
+block js
+
+block body
+  +side-content('About this page')
+  +nav-header-sp
+
+  -
+    const processItems = [
+      {
+        "title": "情報整理",
+        "description": "おおまかな掲載内容を整理し、ページ構成を設計しました。",
+        "img": "search"
+      },
+      {
+        "title": "ワイヤーフレーム作成",
+        "description": "Figma Make を用いて、各ページのワイヤーフレームを作成しました。",
+        "img": "pen"
+      },
+      {
+        "title": "環境構築",
+        "description": "開発環境には Webpack を採用し、Pug・SCSS・JavaScript のコンパイルや開発サーバーによる動作確認を行える構成を構築しました。",
+        "img": "pickel"
+      },
+      {
+        "title": "コーディング",
+        "description": "テンプレートエンジンによる共通化や、JSON データを利用したコンテンツ管理を取り入れ、保守性を意識して制作しました。",
+        "img": "html"
+      },
+      {
+        "title": "動作確認・調整",
+        "description": "下記環境での表示や調整を行いました。<br>■ Windows 11<br>- Chrome 149<br>- Edge 149<br>- Firefox 143<br>■ iOS 26<br>- Safari",
+        "img": "pc"
+      },
+      {
+        "title": "公開",
+        "description": "Cloudflare Workers で公開しました。",
+        "img": "check"
+      }
+    ]
+
+    const calendarIcon = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path
+          d="M8 2V5M16 2V5M3 9H21M5 5H19C20.1 5 21 5.9 21 7V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V7C3 5.9 3.9 5 5 5Z"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    `
+
+  main.check-background
+    .p-about-page(tabindex="1")
+      .p-about-page__inner
+        h2.p-about-page__title 本サイトについて
+        p.p-about-page__message
+          | このポートフォリオサイトは、これまでの学びや経験、取り組んできたことをまとめ、ご覧いただく方に分かりやすく伝えることを目的として制作しました。
+
+        .p-about-page__content
+          .p-about-page__block
+            h3
+              !=calendarIcon
+              span 製作期間
+            .p-about-page__block-inner.p-about-page__block-inner--schedule
+              .schedule-item
+                !=calendarIcon
+                p.schedule-item__text
+                  | 約
+                  span 1
+                  | ヶ月
+              .schedule-item
+                !=calendarIcon
+                p.schedule-item__text
+                  | 2026.06.01 
+                  br.sp-only
+                  | ~ 2026.06.30
+
+          .p-about-page__block
+            h3
+              .
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14 2V8H20"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M8 13H16M8 17H13"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              span 制作プロセス
+            .p-about-page__block-inner.p-about-page__block-inner--process
+              ol.process-list
+                each item, index in processItems
+                  li.process-list__item 
+                    span #{ index + 1 }
+                    img(src=`../assets/img/icon/${item.img}.svg` alt="" width="40" height="40" loading="lazy")
+                    p= item.title
+                    p!= item.description
+
+          .p-about-page__block
+            h3
+              .
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="12"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M8 20H16M12 16V20"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              span 使用技術・ツール
+            .p-about-page__block-inner.p-about-page__block-inner--spec
+              .spec-item
+                .spec-item__title 技術
+                ul.spec-item__list 
+                  li HTML5 (Pug) 
+                  li CSS3 (SCSS)
+                  li JavaScript
+                  li GSAP
+                  li Swiper
+              .spec-item
+                .spec-item__title ツール
+                ul.spec-item__list 
+                  li Webpack
+                  li Git
+                  li GitHub
+                  li Figma
+                  li Cloudflare Workers
+
+
+      

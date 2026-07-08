@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "cf-typegen": "wrangler types"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "@babel/core": "^7.29.7",
     "@babel/preset-env": "^7.29.7",
     "babel-loader": "^10.1.1",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.4",
     "glob": "^13.0.6",
     "html-webpack-plugin": "^5.6.7",
@@ -33,9 +35,12 @@
     "style-loader": "^4.0.0",
     "webpack": "^5.107.2",
     "webpack-cli": "^7.0.3",
-    "webpack-dev-server": "^5.2.4"
+    "webpack-dev-server": "^5.2.4",
+    "wrangler": "^4.105.0"
   },
   "dependencies": {
-    "destyle.css": "^4.0.1"
+    "destyle.css": "^4.0.1",
+    "gsap": "^3.15.0",
+    "swiper": "^12.2.0"
   }
 }

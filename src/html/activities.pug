@@ -1,0 +1,70 @@
+extends ./base/layout
+
+block titleVariable
+  - const pageTitle = "Activities"
+
+block js
+
+block body
+  +side-content('Activities')
+  +nav-header-sp
+
+  - const categories = require('../data/activity-item.json');
+
+  main.check-background
+    .p-activities(tabindex="1")
+      .p-activities__inner
+
+        each activities, categoryName in categories
+          h2.p-activities__category-title= categoryName
+            span= activities.subtitle
+
+          each activity in activities.items
+            +activity-item(activity)
+
+            if activity.slider
+              -
+                let slideCount = 0
+
+                if (activity.slider === 'marketing')
+                  slideCount = 16
+                else if (activity.slider === 'pbl')
+                  slideCount = 12
+
+              .js-activities-gallery(data-modal=activity.slider)
+                .swiper.p-activities__swiper.js-activities-swiper
+                  .swiper-wrapper
+                    - for (var i = 1; i <= slideCount; i++)
+                      button.swiper-slide(data-slide-index=i-1 tabindex="1")
+                        img(src=`../assets/img/powerpoint/${activity.slider}_${i}.png` alt="スライド資料のサムネイル画像")
+                p.p-activities__note ※制作を担当した発表資料を一部抜粋
+                p.p-activities__note ※#{activity.note}
+
+  //- モーダル
+  -
+    const modals = [
+      { name: 'marketing', slideCount: 16 },
+      { name: 'pbl', slideCount: 12 }
+    ];
+
+  each modal in modals
+    .c-modal.js-modal(role="dialog" aria-modal="true" data-modal=modal.name)
+      .c-modal__overlay
+      .c-modal__content
+        button.c-modal__close(type="button") ×
+
+        .swiper.c-modal__swiper.js-modal-swiper
+          .swiper-wrapper
+            - for (var i = 1; i <= modal.slideCount; i++)
+              .swiper-slide(data-slide-index=i-1)
+                img(src=`../assets/img/powerpoint/${modal.name}_${i}.png` alt="スライド資料のサムネイル画像")
+
+          button.swiper-button-prev(data-modal-swiper="prev-btn")
+          button.swiper-button-next(data-modal-swiper="next-btn")
+          .swiper-pagination
+
+        .swiper.c-modal__sub-swiper.js-modal-sub-swiper
+          .swiper-wrapper
+            - for (var i = 1; i <= modal.slideCount; i++)
+              .swiper-slide(data-slide-index=i-1)
+                img(src=`../assets/img/powerpoint/${modal.name}_${i}.png` alt="スライド資料のサムネイル画像")

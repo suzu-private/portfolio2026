@@ -1,0 +1,11 @@
+mixin activity-item(option)
+  -
+    const {
+      title = '',
+      desc = ''
+    } = option
+
+  .c-activity-item 
+    p.c-activity-item__title!= title 
+    .c-activity-item__content
+      p!=desc 

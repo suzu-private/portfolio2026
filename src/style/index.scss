@@ -8,4 +8,9 @@
 @use 'utility';
 
 //- Pages
+@use 'pages/common.scss';
 @use 'pages/top.scss';
+@use 'pages/profile.scss';
+@use 'pages/works.scss';
+@use 'pages/activities.scss';
+@use 'pages/about-page.scss';
