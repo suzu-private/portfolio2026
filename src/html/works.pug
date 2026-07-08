@@ -10,7 +10,7 @@ block body
   +nav-header-sp
 
   main.check-background
-    .p-works.js-sort-works
+    .p-works.js-sort-works(tabindex="1")
       .p-works__inner
         p.p-works__top-message
           | これまでに携わった案件をご紹介します
@@ -19,7 +19,7 @@ block body
           ul.p-works__summary-list
             li.p-works__summary-item
               p.summary-title 参画案件
-              p.summary-description 15
+              p.summary-description 16
                 span 件
             li.p-works__summary-item
               p.summary-title LP制作
@@ -35,7 +35,7 @@ block body
                 span 件
         .p-works__sort(data-sort-works="buttons")
           label.p-works__sort-label 全て
-            input(type="radio" name="works-sort" value="全て" checked)
+            input(type="radio" name="works-sort" value="全て" checked tabindex="1")
           label.p-works__sort-label 新規製作
             input(type="radio" name="works-sort" value="新規製作")
           label.p-works__sort-label リニューアル

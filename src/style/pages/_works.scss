@@ -94,6 +94,7 @@
   }
 
   &__sort-label {
+    position: relative;
     width: fit-content;
     padding: 8px 20px;
     background: #fff;
@@ -121,7 +122,11 @@
     }
 
     input {
-      display: none;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 }

@@ -10,14 +10,14 @@ block body
   +nav-header-sp
 
   main.check-background
-    .p-profile
+    .p-profile(tabindex="1")
       .p-profile__inner
         .p-profile__mv
           svg.p-profile__photo(viewBox="0 0 750 547.5")
             defs
               clipPath#profile-mask(clipPathUnits="userSpaceOnUse")
                 path(d="M 20,0 H 730 Q 750,0 750,20 L 750,547.5 Q 735,532.5 720,547.5 Q 705,532.5 690,547.5 Q 675,532.5 660,547.5 Q 645,532.5 630,547.5 Q 615,532.5 600,547.5 Q 585,532.5 570,547.5 Q 555,532.5 540,547.5 Q 525,532.5 510,547.5 Q 495,532.5 480,547.5 Q 465,532.5 450,547.5 Q 435,532.5 420,547.5 Q 405,532.5 390,547.5 Q 375,532.5 360,547.5 Q 345,532.5 330,547.5 Q 315,532.5 300,547.5 Q 285,532.5 270,547.5 Q 255,532.5 240,547.5 Q 225,532.5 210,547.5 Q 195,532.5 180,547.5 Q 165,532.5 150,547.5 Q 135,532.5 120,547.5 Q 105,532.5 90,547.5 Q 75,532.5 60,547.5 Q 45,532.5 30,547.5 Q 15,532.5 0,547.5 L 0,20 Q 0,0 20,0 Z")
-            image(href="./assets/img/profile.jpg" width="750px" height="547.5" alt="プロフィール写真" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-mask)")
+            image(href="./assets/img/profile.jpg" width="750px" height="547.5" alt="プロフィール写真" preserveAspectRatio="xMidYMid slice" clip-path="url(#profile-mask)" fetchpriority="high")
 
           .p-profile__name
             p Kashiwagi
@@ -124,20 +124,22 @@ block body
                   span 4years
                 dd.p-profile__skill-item CSS3 (SCSS)
                   span 4years
-                dd.p-profile__skill-item JavaScript (jQuery)
+                dd.p-profile__skill-item JavaScript
                   span 3years
 
                 dt.p-profile__skill-title Tools
-                dd.p-profile__skill-item Git 
                 dd.p-profile__skill-item GitHub 
                 dd.p-profile__skill-item Visual Studio Code（VS Code）
-                dd.p-profile__skill-item SourceTree
                 dd.p-profile__skill-item Figma 
                 dd.p-profile__skill-item Photoshop
                 dd.p-profile__skill-item LambdaTest
 
                 dt.p-profile__skill-title Other
+                dd.p-profile__skill-item TypeScript
+                dd.p-profile__skill-item jQuery
                 dd.p-profile__skill-item Vue.js
-                dd.p-profile__skill-item API連携実装
-                dd.p-profile__skill-item HTMLメール
-                dd.p-profile__skill-item HTMLからPDF制作
+                dd.p-profile__skill-item HighCharts
+                dd.p-profile__skill-item Swiper.js
+                dd.p-profile__skill-item API連携実装経験
+                dd.p-profile__skill-item HTMLメール実装経験
+                dd.p-profile__skill-item HTMLからPDF制作経験

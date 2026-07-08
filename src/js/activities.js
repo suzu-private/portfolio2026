@@ -28,12 +28,16 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
   // ----------------------------
   // モーダル
   // ----------------------------
-  const modal = gallery.querySelector('.js-modal');
-  const closeButton = modal.querySelector('.c-modal__close');
-  const overlay = modal.querySelector('.c-modal__overlay');
+  const targetModalData = gallery.dataset.modal;
+  const targetModal = document.querySelector(`.js-modal[data-modal="${targetModalData}"]`);
+  if (!targetModal) return;
+
+  const closeButton = targetModal.querySelector('.c-modal__close');
+  const overlay = targetModal.querySelector('.c-modal__overlay');
+  const main = document.querySelector('main');
 
   const modalSubSwiper = new Swiper(
-    gallery.querySelector('.js-modal-sub-swiper'),
+    targetModal.querySelector('.js-modal-sub-swiper'),
     {
       slidesPerView: 4,
       spaceBetween: 10,
@@ -43,13 +47,13 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
   );
 
   const modalSwiper = new Swiper(
-    gallery.querySelector('.js-modal-swiper'),
+    targetModal.querySelector('.js-modal-swiper'),
     {
       modules: [Navigation, Thumbs],
       slidesPerView: 1,
       navigation: {
-        nextEl: modal.querySelector('[data-modal-swiper="next-btn"]'),
-        prevEl: modal.querySelector('[data-modal-swiper="prev-btn"]'),
+        nextEl: targetModal.querySelector('[data-modal-swiper="next-btn"]'),
+        prevEl: targetModal.querySelector('[data-modal-swiper="prev-btn"]'),
       },
       thumbs: {
         swiper: modalSubSwiper,
@@ -57,13 +61,20 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
     }
   );
 
+  let triggerButton = null;
   gallery
     .querySelectorAll('.js-activities-swiper .swiper-slide')
     .forEach((slide) => {
       slide.addEventListener('click', () => {
+        console.log(targetModal);
         const index = Number(slide.dataset.slideIndex);
 
-        modal.classList.add('is-open');
+        targetModal.classList.add('is-open');
+        triggerButton = slide;
+        main.inert = true;
+
+        closeButton.focus();
+        document.body.style.overflow = 'hidden';
 
         modalSwiper.update();
         modalSubSwiper.update();
@@ -73,9 +84,22 @@ document.querySelectorAll('.js-activities-gallery').forEach((gallery) => {
     });
 
   const closeModal = () => {
-    modal.classList.remove('is-open');
+    targetModal.classList.remove('is-open');
+
+    main.inert = false;
+    document.body.style.overflow = '';
+    triggerButton?.focus();
   };
 
   closeButton.addEventListener('click', closeModal);
   overlay.addEventListener('click', closeModal);
+
+  // Escapeで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (!targetModal.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
 });

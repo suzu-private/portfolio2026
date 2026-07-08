@@ -101,7 +101,7 @@ block body
               p
                 | チームでの開発が中心のため、誰が見ても理解しやすく、保守しやすいコーディングを心がけています。
             .p-top-contents__more
-              a(href='./profile.html') Read More
+              a(href='./profile.html') プロフィールをもっと見る
           .p-top-contents__item
             h2.p-top-contents__title 
               | Works 
@@ -130,7 +130,7 @@ block body
                   if index <= 2
                     +work-card(option, (index + 1))
             .p-top-contents__more
-              a(href='./works.html') Read More
+              a(href='./works.html') 実績をもっと見る
           .p-top-contents__item
             h2.p-top-contents__title 
               | Activities 
@@ -138,12 +138,12 @@ block body
               ul.process-list
                 each item in activitiesItem
                   li.process-list__item 
-                    img(src=`../assets/img/icon/${item.img}.svg`)
+                    img(src=`../assets/img/icon/${item.img}.svg` alt="")
                     p= item.title
                     p!= item.description
 
             .p-top-contents__more
-              a(href='./activities.html') Read More
+              a(href='./activities.html') その他の活動をもっと見る
           .p-top-contents__item
             h2.p-top-contents__title 
               | About this page 
@@ -151,8 +151,8 @@ block body
               ul.process-list
                 each item in aboutPageItems
                   li.process-list__item 
-                    img(src=`../assets/img/icon/${item.img}.svg`)
+                    img(src=`../assets/img/icon/${item.img}.svg` alt="")
                     p= item.title
                     p!= item.description
             .p-top-contents__more
-              a(href='./about-page.html') Read More
+              a(href='./about-page.html') 本ページについてもっと見る

@@ -56,7 +56,7 @@ block body
     `
 
   main.check-background
-    .p-about-page
+    .p-about-page(tabindex="1")
       .p-about-page__inner
         h2.p-about-page__title 本サイトについて
         p.p-about-page__message
@@ -110,7 +110,7 @@ block body
                 each item, index in processItems
                   li.process-list__item 
                     span #{ index + 1 }
-                    img(src=`../assets/img/icon/${item.img}.svg`)
+                    img(src=`../assets/img/icon/${item.img}.svg` alt="" width="40" height="40" loading="lazy")
                     p= item.title
                     p!= item.description
 
@@ -150,9 +150,8 @@ block body
                   li Webpack
                   li Git
                   li GitHub
-                  li SourceTree
                   li Figma
-                  li Cloudflare 
+                  li Cloudflare Workers
 
 
       
